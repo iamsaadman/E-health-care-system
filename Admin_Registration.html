@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Registration E Health Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap");
+
+    .home-text {
+      font-family: "Baloo Bhai 2", serif;
+    }
+
+    .login-text {
+      font-family: "League Spartan", sans-serif;
+    }
+
+    input:focus {
+      color: white;
+    }
+  </style>
+</head>
+
+<body
+    class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]">
+    <div class="fixed inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-70"></div>
+
+  <!-- Navbar -->
+  <nav class="text-white z-20 relative login-text text-xl text-center">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <span class="text-2xl font-semibold whitespace-nowrap">E Health Care</span>
+      </a>
+      <div class="flex mx-auto w-full md:block md:w-auto">
+        <ul class="flex flex-auto flex-row font-medium p-4 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
+          <li>
+            <a href="http://127.0.0.1:3000/Homepage.html"
+              class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">Home</a>
+          </li>
+          <li>
+            <a href="#services"
+              class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">Services</a>
+          </li>
+          <li>
+            <a href="#pricing"
+              class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">Pricing</a>
+          </li>
+          <li>
+            <a href="#contact"
+              class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form Section -->
+  <div class="relative max-w-4xl mx-auto p-6 bg-transparent bg-opacity-90 shadow-lg rounded-lg z-20 mt-16">
+    <div class="text-center mb-8">
+      <h4 class="text-white text-2xl font-bold home-text">Admin Panel Registration</h4>
+    </div>
+
+    <form>
+      <div class="grid sm:grid-cols-2 gap-8 home-text">
+        <div>
+          <label class="text-white text-lg mb-2 block">First Name</label>
+          <input name="name" type="text"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Enter first name" />
+        </div>
+        <div>
+          <label class="text-white text-lg mb-2 block">Last Name</label>
+          <input name="lname" type="text"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Enter last name" />
+        </div>
+        <div>
+          <label class="text-white text-lg mb-2 block">Email Id</label>
+          <input name="email" type="text"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Enter email" />
+        </div>
+        <div>
+          <label class="text-white text-lg mb-2 block">Mobile No.</label>
+          <input name="number" type="number"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Enter mobile number" />
+        </div>
+        <div>
+          <label class="text-white text-lg mb-2 block">Password</label>
+          <input name="password" type="password"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Enter password" />
+        </div>
+        <div>
+          <label class="text-white text-lg mb-2 block">Confirm Password</label>
+          <input name="cpassword" type="password"
+            class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+            placeholder="Confirm password" />
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <button
+          type="submit"
+          class="relative flex mx-auto p-1 overflow-hidden font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+        >
+          <span
+            class="flex justify-center text-lg sm:text-xl relative px-44 py-3 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+            >Sign Up</span
+          >
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-900 relative pt-8 ">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <div class="md:flex md:justify-between">
+        <div class="mb-6 md:mb-0">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E Health Care</span>
+        </div>
+        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div>
+            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <li class="mb-4">
+                <a href="#" class="hover:underline">E Health Care</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <li class="mb-4">
+                <a href="#" class="hover:underline">GitHub</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+              <li class="mb-4">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+ 
+  
+</body>
+
+</html>
