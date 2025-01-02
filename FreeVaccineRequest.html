@@ -3,54 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Option - E Health Care</title>
+    <title>Free Vaccine Request E Health Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
-      @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
 
       @keyframes typewriter {
-        0% {
-          width: 0;
-        }
-        100% {
-          width: 100%;
-        }
+          0% {
+              width: 0;
+          }
+
+          100% {
+              width: 100%;
+          }
       }
 
       @keyframes blinkTextCursor {
-        50% {
-          border-color: transparent;
-        }
-        100% {
-          border-color: white;
-        }
+          50% {
+              border-color: transparent;
+          }
+
+          100% {
+              border-color: black;
+          }
       }
 
       .fixed-slogan {
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-        word-break: normal;
-        border-right: 3px solid white;
-        width: 0;
-        animation: typewriter 4s steps(40) 2s forwards, blinkTextCursor 0.75s;
-        text-align: left;
+          top: 30%;
+          left: 50%;
+          transform: translateX(-50%) translateY(250px);
+          font-size: 1.5rem;
+          text-align: center;
+          font-weight: lighter;
+          white-space: nowrap;
+          overflow: hidden;
+          display: inline-block;
+          animation: typewriter 4s steps(40) 2s forwards, blinkTextCursor 0.75s step-end infinite;
       }
 
-      .login-text {
-        font-family: "League Spartan", sans-serif;
+      .fixed-heading {
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          font-size: 3rem;
+          font-weight: bolder;
+          text-align: center;
       }
-    </style>
+      .tex1{
+        font-family: "Baloo Bhai 2";
+      }
+      .text2{
+        font-family: "League Spartan";
+      }
+
+      
+  </style>
   </head>
-
   <body
     class="relative bg-cover bg-center bg-no-repeat bg-fixed bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]"
   >
     <div
       class="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90"
     ></div>
-    <nav class="text-white z-30 relative home-text text-xl">
+    <nav class="text-white z-30 relative text2 text-xl">
       <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
           <span class="login_text text-2xl font-semibold whitespace-nowrap">
@@ -92,45 +108,153 @@
       </div>
     </nav>
 
-    <div class="relative font-[sans-serif]">
-      <div class="h-screen flex flex-col items-center justify-center px-4">
-        <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
-          <div>
-            <h2
-              class="login-text text-6xl font-bold lg:leading-[55px] text-white"
-            >
-              Choose Your Login Option
-            </h2>
-            <p
-              class="fixed-slogan text-transparent bg-clip-text login-text text-xl mt-6 text-white"
-            >
-              Enjoy effortless journey of your healthcare.
-            </p>
+    <div
+      class="relative flex flex-col justify-center items-center font-[sans-serif] h-screen p-6 text2 "
+    >
+      <h1 class="text-white text-5xl mb-10 pb-10 font-semibold text-center">
+        Welcome to Free Vaccine Request Form
+      </h1>
+      <div
+        class="grid md:grid-cols-2 items-center gap-y-8 bg-white max-w-7xl w-full rounded-lg overflow-hidden"
+      >
+        <div
+          class="max-md:order-1 flex flex-col justify-center sm:p-8 p-4 bg-gradient-to-t w-full h-full bg-blue-500 to to-blue-800"
+        >
+          <div class="max-w-md space-y-12 mx-auto">
+            <div>
+              <h4 class="text-white text-lg font-semibold">
+                No Need to Create account
+              </h4>
+              <p class="text-[13px] text-white mt-2">
+                Welcome to our free vaccine registration panel! Get started without creating an account.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-white text-lg font-semibold">
+                Simple & Secure Registration
+              </h4>
+              <p class="text-[13px] text-white mt-2">
+                Our registration process is designed to be straightforward and
+                secure. We prioritize your privacy and data security.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-white text-lg font-semibold">
+                Terms and Conditions Agreement
+              </h4>
+              <p class="text-[13px] text-white mt-2">
+                Require users to accept the terms and conditions of your service
+                during registration.
+              </p>
+            </div>
           </div>
-
-          <!-- Login Option Buttons (User or Admin) -->
-          <div class="flex justify-center items-center space-x-6 mt-8">
-            <a
-              href="http://127.0.0.1:3000/User_login.html"
-              class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold py-3 px-10 rounded-md shadow-lg hover:shadow-xl hover:bg-gradient-to-l"
-            >
-              Login as User
-            </a>
-            <a
-              href="http://127.0.0.1:3000/Admin_login.html"
-              class="bg-gradient-to-r from-red-400 to-yellow-500 text-white font-semibold py-3 px-10 rounded-md shadow-lg hover:shadow-xl hover:bg-gradient-to-l"
-            >
-              Login as Admin
-            </a>
-          </div>
-
-          <p class="text-sm mt-12 text-white">
-            Don't have an account?
-            <a href="#" class="text-white font-semibold hover:underline ml-1"
-              >Register here</a
-            >
-          </p>
         </div>
+
+        <form class="sm:p-8 p-4 w-full text2">
+          <div class="mb-12">
+            <h3
+              class="text-blue-500 text-4xl font-extrabold flex justify-center"
+            >
+              Regsiter
+            </h3>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block">Full Name</label>
+              <input
+                name="name"
+                type="text"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter name"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block">Email</label>
+              <input
+                name="Email"
+                type="text"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter Email"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block">Number</label>
+              <input
+                name="number"
+                type="number"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter Number"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block"
+                >Vaccine name</label
+              >
+              <input
+                name="Name"
+                type="number"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter Vaccine Name"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block"
+                >Date of Birth (DD-MM-YYYY)</label
+              >
+              <input
+                name="date"
+                type="date"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter Date of Birth"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block">Location</label>
+              <input
+                name="Location"
+                type="location"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter location"
+              />
+            </div>
+            <div>
+              <label class="text-gray-800 text-sm mb-2 block">Illness</label>
+              <input
+                name="Text"
+                type="text"
+                class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3 rounded-md outline-blue-500"
+                placeholder="Enter reason for illness"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center mt-6">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              class="h-4 w-4 shrink-0 rounded"
+            />
+            <label for="remember-me" class="ml-3 block text-sm">
+              I accept the
+              <a
+                href="javascript:void(0);"
+                class="text-blue-500 font-semibold hover:underline ml-1"
+                >Terms and Conditions</a
+              >
+            </label>
+          </div>
+
+          <div class="mt-6">
+            <button
+              type="button"
+              class="py-3 px-6 text-sm tracking-wide font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -138,7 +262,6 @@
       <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" class="flex items-center">
               <span
                 class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
                 >E Health Care</span
