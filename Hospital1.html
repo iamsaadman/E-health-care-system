@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E Health Care Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap");
+
+      .fixed-slogan {
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%) translateY(250px);
+        font-size: 1.5rem;
+        text-align: center;
+        font-weight: lighter;
+        font-family: "Baloo Bhai 2";
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      .fixed-heading {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        font-size: 3rem;
+        font-weight: bolder;
+        text-align: center;
+        font-family: "League Spartan";
+      }
+      footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        color: #333;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      footer {
+        margin-top: auto;
+      }
+
+      /* For the More Table to be placed left */
+      .more-table {
+        position: relative;
+        top: 20%;
+        left: 0;
+        width: 200px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        z-index: 10;
+      }
+
+      .more-table h3 {
+        text-align: center;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .more-table table {
+        width: 100%;
+        text-align: center;
+      }
+
+      .more-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .more-table a {
+        display: block;
+        padding: 10px;
+        background: rgb(17 24 39 / var(--tw-bg-opacity, 1)) /* #111827 */;
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .more-table a:hover {
+        background: linear-gradient(to right, #00796b, #0288d1);
+      }
+      :root {
+        --header-height: 4rem;
+        --sidebar-width: 240px;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .animate-slide-down {
+        animation: slideDown 0.5s ease-out;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 3.5rem;
+        right: 1rem;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        z-index: 1000;
+        display: none;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        color: #1f2937;
+        text-decoration: none;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .dropdown-menu a svg {
+        margin-right: 12px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f9fafb;
+        color: #111827;
+      }
+
+      .dropdown-menu a:last-child {
+        border-bottom: none;
+      }
+
+      .profile-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .profile-icon img {
+        border-radius: 50%;
+        border: 2px solid #e5e7eb;
+      }
+
+      .overlay-blur {
+        filter: blur(8px);
+      }
+
+      .profile-name {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #1f2937;
+      }
+
+      .search-bar {
+        position: relative;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 8px 12px;
+      }
+
+      .search-bar input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 200px;
+        transition: width 0.3s ease-in-out;
+      }
+
+      .search-bar input:focus {
+        width: 300px;
+      }
+
+      .search-bar svg {
+        width: 20px;
+        height: 20px;
+        fill: #6b7280;
+        margin-right: 8px;
+      }
+
+      .icon-button {
+        margin-right: 1rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: #f9fafb;
+        transition: background-color 0.3s ease;
+        position: relative;
+      }
+
+      .icon-button:hover {
+        background-color: #e5e7eb;
+      }
+
+      .icon-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #6b7280;
+      }
+
+      .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #f87171;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .tooltip {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .icon-button:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+      /* Profile Icon Styling */
+      .profile-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+        padding: 8px 12px;
+        border-radius: 1.5rem; /* Rounded look */
+        backdrop-filter: blur(10px); /* Apply blur effect */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+        transition: background-color 0.3s ease;
+      }
+
+      .profile-icon:hover {
+        background: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
+      }
+
+      .profile-icon img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; /* Perfectly round */
+        border: 2px solid white; /* Add white border for contrast */
+        object-fit: cover; /* Ensure the image fills the circle properly */
+      }
+
+      .profile-name {
+        font-size: 1rem;
+        font-weight: bold;
+        color: white; /* Text color to contrast with the background */
+      }
+
+      /* Dropdown Menu Styling */
+      .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 10px); /* Space below the profile icon */
+        right: 0;
+        background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+        backdrop-filter: blur(10px); /* Apply blur effect */
+        border-radius: 1rem; /* Rounded corners */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+        width: 220px;
+        z-index: 1000;
+        display: none;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 12px 16px;
+        color: white; /* White text for visibility */
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+        color: #f9fafb; /* Slightly lighter white on hover */
+      }
+
+      .dropdown-menu a span.material-icons-outlined {
+        font-size: 1.5rem; /* Adjust icon size */
+        color: white;
+      }
+
+      /* Arrow Icon in Profile */
+      .profile-icon .material-icons {
+        font-size: 1.5rem;
+        color: white;
+        transition: transform 0.3s ease;
+      }
+    </style>
+  </head>
+
+  <body
+    class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]"
+  >
+    <div
+      class="fixed inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90"
+    ></div>
+    <header
+    class="relative m-6 p-6 w-full text-2xl bg-transparent text-indigo-800 z-50 shadow-lg animate-slide-down"
+  >
+    <div
+      class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between h-16"
+    >
+      <div class="text-xl font-bold text-blue-500">
+        স্বাস্থ্য <span class="text-blue-600">- সুরক্ষা</span>
+      </div>
+      <div class="flex items-center">
+        <div class="icon-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 15H6a2.032 2.032 0 00-1.595.595L3 17h5m-6-5a9 9 0 1118 0H3z"
+            />
+          </svg>
+          <div class="badge">10</div>
+          <div class="tooltip">Messenger</div>
+        </div>
+        <div class="icon-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <div class="badge">10</div>
+          <div class="tooltip">Notifications</div>
+        </div>
+        <img
+          id="avatarButton"
+          type="button"
+          data-dropdown-toggle="userDropdown"
+          data-dropdown-placement="bottom-start"
+          class="w-10 h-10 rounded-full cursor-pointer"
+          src="<?php echo $profilePicture; ?>"
+          alt="User dropdown"
+        />
+
+        <!-- Dropdown menu -->
+        <div
+          id="userDropdown"
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+        >
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div><?php echo $fullName; ?></div>
+            <div class="font-medium truncate"><?php echo $email; ?></div>
+          </div>
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="avatarButton"
+          >
+            <li>
+              <a
+                href="dashboard.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                href="settings.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Settings</a
+              >
+            </li>
+            <li>
+              <a
+                href="earnings.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Earnings</a
+              >
+            </li>
+          </ul>
+          <div class="py-1">
+            <a
+              href="logout.php"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    <!-- Hospital 1 Address Section -->
+    <div
+      class="relative w-full py-36 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg p-6 text-white shadow-md"
+    >
+      <div class="text-center">
+        <!-- Main Heading -->
+        <h1
+          class="text-5xl sm:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-teal-200 to-pink-300"
+        >
+          Hospital 1
+        </h1>
+
+        <!-- Subheading -->
+        <h2
+          class="mt-4 text-2xl sm:text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-200"
+        >
+          Address
+        </h2>
+      </div>
+    </div>
+
+    <!-- More Table Section (Left of the Screen) -->
+    <div
+      class="more-table ml-5 pl-5 flex-auto justify-center h-auto"
+    >
+      <h3>More</h3>
+      <table>
+        <tr>
+          <td>
+            <a href="#vaccine-check">Check for Vaccine</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="#bed-booking-check">Check for Bed Booking</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="flex justify-center items-center min-h-screen ">
+      <div class="relative w-full max-w-4xl mx-auto p-6 -translate-y-44 bg-transparent rounded-lg shadow-xl flex flex-col justify-center items-center text-center bg-white">
+    
+          <!-- Image -->
+          <img class="w-80 h-48 rounded-lg shadow-2xl object-cover mb-8" src="https://via.placeholder.com/800x400" alt="Healthcare Services" />
+          
+          <!-- Heading -->
+          <h3 class="text-4xl font-semibold mb-6 text-gray-800">Blood Available</h3>
+          
+          <!-- Real-time Display Section -->
+          <div class="w-full max-w-3xl mx-auto space-y-6">
+              <!-- O+ Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="o-positive" class="text-lg font-medium w-32 text-gray-800">O+ :</label>
+                  <input type="text" id="o-positive" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- A+ Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="a-positive" class="text-lg font-medium w-32 text-gray-800">A+ :</label>
+                  <input type="text" id="a-positive" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- B+ Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="b-positive" class="text-lg font-medium w-32 text-gray-800">B+ :</label>
+                  <input type="text" id="b-positive" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- AB+ Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="ab-positive" class="text-lg font-medium w-32 text-gray-800">AB+ :</label>
+                  <input type="text" id="ab-positive" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- O- Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="o-negative" class="text-lg font-medium w-32 text-gray-800">O- :</label>
+                  <input type="text" id="o-negative" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- A- Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="a-negative" class="text-lg font-medium w-32 text-gray-800">A- :</label>
+                  <input type="text" id="a-negative" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- B- Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="b-negative" class="text-lg font-medium w-32 text-gray-800">B- :</label>
+                  <input type="text" id="b-negative" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+  
+              <!-- AB- Blood -->
+              <div class="flex items-center justify-between space-x-4">
+                  <label for="ab-negative" class="text-lg font-medium w-32 text-gray-800">AB- :</label>
+                  <input type="text" id="ab-negative" class="flex-grow p-2 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="0" readonly />
+              </div>
+          </div>
+        
+          <!-- Buttons Section (Request & Donate) -->
+          <div class="flex space-x-6 mt-8">
+              <a href="request_page.php">
+                  <button class="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-700">
+                      Request
+                  </button>
+              </a>
+              
+              <!-- Donate Button - Navigates to the donate page -->
+              <a href="donate_page.php">
+                  <button class="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-700">
+                      Donate
+                  </button>
+              </a>
+          </div>
+      </div>
+  </div>
+  
+      
+      
+      
+  
+    <!-- Grid Section -->
+    <div
+      class="container mx-auto grid md:grid-cols-3 gap-10 px-4 py-8 m-8 relative"
+    >
+      <div
+        class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md"
+      >
+        <h3 class="text-2xl font-semibold mb-4">About Us</h3>
+        <p class="text-base">
+          At E Health Care, we aim to bridge the gap between healthcare
+          providers and patients by utilizing innovative technologies and
+          efficient service systems.
+        </p>
+      </div>
+
+      <div
+        class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md"
+      >
+        <h3 class="text-2xl font-semibold mb-4">Our Services</h3>
+        <p class="text-base">
+          From emergency medical support to regular health checkups, we provide
+          a wide array of healthcare solutions tailored to your needs.
+        </p>
+      </div>
+
+      <div
+        class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md"
+      >
+        <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
+        <p class="text-base">
+          Have questions or need assistance? Reach out to us via our hotline or
+          email for immediate support.
+        </p>
+      </div>
+    </div>
+
+    <footer class="bg-white dark:bg-gray-900 relative">
+      <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="https://flowbite.com/" class="flex items-center">
+              <span
+                class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+                >E Health Care</span
+              >
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Resources
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">About</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Services</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Legal
+              </h2>
+              <ul class="text-gray-500 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">Terms & Conditions</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard E Health Care™</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap");
+
+        .tex1 {
+            font-family: "Baloo Bhai 2";
+        }
+
+        .text2 {
+            font-family: "League Spartan";
+        }
+
+        .blur-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            /* Add dark overlay */
+            backdrop-filter: blur(8px);
+            /* Apply the blur effect */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            display: none;
+        }
+
+        .show-sidebar .blur-overlay {
+            display: block;
+        }
+
+        .show-sidebar .sidebar {
+            transform: translateX(0);
+        }
+
+        .hamburger-icon {
+            width: 30px;
+            height: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .hamburger-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+        }
+
+        .hamburger-icon-container {
+            position: absolute;
+            top: 70px;
+            /* Adjust the position of the hamburger icon */
+            left: 20px;
+            z-index: 30;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-profile {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .sidebar-profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-profile h2 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .sidebar-section {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 30px;
+            /* Add space between sections */
+        }
+
+        .sidebar-section a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-section a:hover {
+            background-color: #4A90E2;
+        }
+
+        .sidebar-section a svg {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Logout Button Styling */
+        .logout-button {
+            margin-top: auto;
+            padding: 10px;
+            background-color: #e53e3e;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .logout-button:hover {
+            background-color: #c53030;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+        :root {
+            --header-height: 4rem;
+            --sidebar-width: 240px;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-down {
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 3.5rem;
+            right: 1rem;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 220px;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #1f2937;
+            text-decoration: none;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a svg {
+            margin-right: 12px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-icon img {
+            border-radius: 50%;
+            border: 2px solid #e5e7eb;
+        }
+
+        .overlay-blur {
+            filter: blur(8px);
+        }
+
+        .profile-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .search-bar {
+            position: relative;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 200px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .search-bar input:focus {
+            width: 300px;
+        }
+
+        .search-bar svg {
+            width: 20px;
+            height: 20px;
+            fill: #6b7280;
+            margin-right: 8px;
+        }
+
+        .icon-button {
+            margin-right: 1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background-color: #f9fafb;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .icon-button:hover {
+            background-color: #e5e7eb;
+        }
+
+        .icon-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #6b7280;
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #f87171;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .icon-button:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* Profile Icon Styling */
+.profile-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+    padding: 8px 12px;
+    border-radius: 1.5rem; /* Rounded look */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: background-color 0.3s ease;
+}
+
+.profile-icon:hover {
+    background: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Perfectly round */
+    border: 2px solid white; /* Add white border for contrast */
+    object-fit: cover; /* Ensure the image fills the circle properly */
+}
+
+.profile-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white; /* Text color to contrast with the background */
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px); /* Space below the profile icon */
+    right: 0;
+    background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border-radius: 1rem; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    width: 220px;
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 12px 16px;
+    color: white; /* White text for visibility */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+    color: #f9fafb; /* Slightly lighter white on hover */
+}
+
+.dropdown-menu a span.material-icons-outlined {
+    font-size: 1.5rem; /* Adjust icon size */
+    color: white;
+}
+
+/* Arrow Icon in Profile */
+.profile-icon .material-icons {
+    font-size: 1.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+    </style>
+</head>
+
+<body
+    class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]">
+    <!-- <?php
+// Database connection
+$conn = new mysqli('localhost', 'root', '', 'shastho_surukha');
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Simulating logged-in user session
+$user_id = $_SESSION['id'];// Replace with your session user ID
+
+// Query to fetch user details
+$stmt = $conn->prepare("SELECT fullname, picture FROM user WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Set user data
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $fullName = htmlspecialchars($user['fullname']);
+    $profilePicture = !empty($user['picture']) ? htmlspecialchars($user['picture']) : 'default_pic.png';
+} else {
+    $fullName = "Guest";
+    $profilePicture = 'default_pic.png';
+}
+
+$stmt->close();
+$conn->close();
+?> -->
+    <div class="fixed inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-90"></div>
+    <header class="relative w-full bg-transparent text-indigo-800 z-50 shadow-lg animate-slide-down">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between h-16">
+            <div class="text-xl font-bold text-blue-500">
+                স্বাস্থ্য <span class="text-blue-600">- সুরক্ষা</span>
+            </div>
+            <div class="flex items-center">
+                <div class="search-bar">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 15H6a2.032 2.032 0 00-1.595.595L3 17h5m-6-5a9 9 0 1118 0H3z" />
+                    </svg>
+                    <div class="badge">10</div>
+                    <div class="tooltip">Messenger</div>
+                </div>
+                <div class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div class="badge">10</div>
+                    <div class="tooltip">Notifications</div>
+                </div>
+                <img 
+                id="avatarButton" 
+                type="button" 
+                data-dropdown-toggle="userDropdown" 
+                data-dropdown-placement="bottom-start" 
+                class="w-10 h-10 rounded-full cursor-pointer" 
+                src="<?php echo $profilePicture; ?>" 
+                alt="User dropdown">
+            
+            <!-- Dropdown menu -->
+            <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div><?php echo $fullName; ?></div>
+                    <div class="font-medium truncate"><?php echo $email; ?></div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                    <li>
+                        <a href="dashboard.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="settings.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="earnings.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    </li>
+                </ul>
+                <div class="py-1">
+                    <a href="logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </div>
+            </div>
+                
+            </div>
+        </div>
+    </header>  
+    <div class="pt-16 max-w-8xl mx-auto flex">
+        <div class="content flex-grow" id="mainContent">
+            <!-- Main content goes here -->
+            <div class="h-full flex w-full justify-center items-center p-10">
+                <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+
+                    <!-- card  1-->
+                    <div class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+                        <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200 w-6 h-6 text-center">1</div>
+                        <div class="p-2 flex justify-center">
+                            <a href="https://www.bing.com/maps?&mepi=109~Healthcare~TopOfPage~Map_Image&ty=18&q=Dhaka%20Medical%20College%20and%20Hospital&ss=ypid.YN8017x7424999217395949001&ppois=23.728900909423828_90.42210388183594_Dhaka%20Medical%20College%20and%20Hospital_YN8017x7424999217395949001~&cp=23.728901~90.422104&lvl=16&v=2&sV=1&FORM=MPSRPL">
+                                <img class="rounded-md" src="https://i0.wp.com/specialistdoctorbd.com/wp-content/uploads/2020/01/Dhaka-Medical-College-Hospital.jpg?fit=874%2C469&ssl=1" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="px-4 pb-3">
+                            <div>
+                                <a href="#">
+                                    <h5 class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white">Dhaka Medical College & Hospital</h5>
+                                </a>
+                                <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">Road 13A, Dhaka 1205 </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- card  2-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                2
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="https://www.bing.com/maps?&mepi=107~Local~TopV2W~Entity_Vertical_List_Card&ty=17&q=top%2020%20hospital%20name%20in%20dhaka&segment=Local&ppois=23.728878021240234_90.42195129394531_Dhaka%20Medical%20College%20and%20Hospital_YN8017x7424999217395949001~23.74696159362793_90.38563537597656_Green%20Life%20Medical%20College_YN8017x11288563314053208652~23.74103546142578_90.39581298828125_Hospitals%20Bd_YN8017x40327446579916464~&sei=0&cp=23.746962~90.385635&child=%26ty%3D18%26q%3DGreen%2520Life%2520Medical%2520College%2520top%252020%2520hospital%26ss%3Dypid.YN8017x11288563314053208652%26segment%3DLocal%26ppois%3D23.74696159362793_90.38563537597656_Green%2520Life%2520Medical%2520College%2520top%252020%2520hospital_YN8017x11288563314053208652~%26cp%3D23.746962~90.385635%26EnableMapViewChange%3Dtrue&FORM=MPSRPL">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th?id=OLC.iiLAjNWEo/X5Cg480x360&rs=1&pid=ImgDetMain"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Green Life Medical College
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    32,Green Road(Bir Uttam KM Shafiullah Sarak),Dhanmondi, Dhaka 1205
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 3 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                3
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="https://www.bing.com/maps?&mepi=107~Local~MiddleOfPage~Entity_Vertical_List_Card&ty=17&q=popular%20hospital%20address&segment=Local&ppois=23.752737045288086_90.38441467285156_Popular%20Medical%20College%20Hospital_YN8017x6849068930452145163~23.72856903076172_90.42542266845703_CARe%20Medical%20College%20Hospital_YN8017x9414780809595954512~23.747739791870117_90.38591766357422_Popular%20Medical%20College_YN8017x2385809957704425183~&sei=0&cp=23.752737~90.384415&child=%26ty%3D18%26q%3DPopular%2520Medical%2520College%2520Hospital%2520popular%2520hospital%26ss%3Dypid.YN8017x6849068930452145163%26segment%3DLocal%26ppois%3D23.752737045288086_90.38441467285156_Popular%2520Medical%2520College%2520Hospital%2520popular%2520hospital_YN8017x6849068930452145163~%26cp%3D23.752737~90.384415%26EnableMapViewChange%3Dtrue&FORM=MPSRPL">
+                    <img class="rounded-md"
+                    src="https://lh3.googleusercontent.com/p/AF1QipO8emHxgRQx0mQusG_z-VewxtO3-xqFa09uPsjO=s1600-w400"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Popular Medical College Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    House No: 25,Road No:02,Dhanmondi , Dhaka 1205
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 4 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                4
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="https://www.bing.com/maps?&mepi=107~Local~TopOfPage~Entity_Vertical_List_Card&ty=17&q=labaid%20hospital%20location&segment=Local&ppois=23.71029281616211_90.42444610595703_Labaid_YN8017x16194311976111770234~23.74630355834961_90.4241714477539_LABAID_YN8017x8295020922272900942~23.73732566833496_90.428466796875_LABAID%20CANCER%20HOSPITAL%20AND%20SUPER%20SPECIALITY%20CENTER_YN8017x8288168700272703607~&sei=0&cp=23.746304~90.424171&child=%26ty%3D18%26q%3DLABAID%2520labaid%2520hospital%26ss%3Dypid.YN8017x8295020922272900942%26segment%3DLocal%26ppois%3D23.74630355834961_90.4241714477539_LABAID%2520labaid%2520hospital_YN8017x8295020922272900942~%26cp%3D23.746304~90.424171%26EnableMapViewChange%3Dtrue&FORM=MPSRPL">
+                    <img class="rounded-md"
+                    src="https://4.bp.blogspot.com/-SvF9FdhfUeM/WhPuvm83mrI/AAAAAAAAAAg/_DP0CPjEDG8up0kmIFJb8F0Zd0BK1I2SwCLcBGAs/s1600/01.jpg"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Labaid Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    House- 01,Road-04,Dhanmondi,Dhaka 1205, Bangladesh 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 5 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+               5
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="https://www.bing.com/search?q=pg+hospital+dhaka+address&qs=SC&pq=pg+hospital+dhaka+adr&sc=12-21&cvid=D185F9D835CF402DB8CBD526DD846ED5&FORM=QBRE&sp=1&ghc=1&lq=0.">
+                    <img class="rounded-md"
+                    src="https://mbbsbd.com/wp-content/uploads/2021/09/bangabondhu-madical-college.jpg"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Bangabandhu Sheikh Mujib Medical University
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Street, Paribagh, Dhaka 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  6-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                6
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/OIP.zBS0jEVE35s7jxvMdPRsiwHaFj?w=230&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Ispahani Islamia Eye institute & Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    1215 Farmgate Road,Dhaka,Dhaka 1215
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  7-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+              7
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/OIP.OP2davhc6oV5ZxqNiNj3LgHaEH?rs=1&pid=ImgDetMain"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Ibn Sina Jatrabari 
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                       Jatrabari, Dhaka-1236 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 8 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                8
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/OIP.ddCQTNJqzjikOdljTyCX1QHaEm?rs=1&pid=ImgDetMain"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Hikmah Eye Hospital 
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    C-287/15,Atish Deepankar Road,Khilgaon,Dhaka-1219.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  9-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                9
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/R.9fd590b00b59caf626137b0986e5cc1f?rik=CID%2bf0qEW8rqPA&riu=http%3a%2f%2fwww.uhlbd.com%2fbackend%2fweb%2fuploads%2f1451280862DSC_0508.jpg&ehk=Ry%2fXxjyRLKtqFm3XJkkDa1hO67dKXmxQNaXozUmFn6U%3d&risl=&pid=ImgRaw&r=0"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            United Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Plot #15, Road #71, Gulshan #02, 1212 Dhaka, Dhaka Division, Gulshan, Dhaka ·
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  10-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                10
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://seatbooking.com.bd/wp-content/uploads/2021/11/BSHL1.jpg"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            America Bangladesh Specialized Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    21 Shyamoli-Mirpur Road, Dhaka 1207
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 11 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                11
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/R.0b19a970c9891f759cc1f5a16717976e?rik=O%2fee%2bj%2fQSHh2SA&pid=ImgRaw&r=0"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Asgar Ali Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    111/1/A Distillery Road, Dhaka 1204
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 12 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                12
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://lh5.googleusercontent.com/p/AF1QipN4BEGRIWo21BjEmsb0vz1tZG5xRGIE1xoQJA7j=w1200-h630-p-k-no-nu"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Institute of Child and Mother Health (ICMH)
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Matuail, Dhaka, Bangladesh
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  13-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+                13
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/R.b50d61a6f861ea4e7ff9eb9c44257ec4?rik=tBwHNJn%2b3IoN2w&riu=http%3a%2f%2fmbbsbd.org%2fwp-content%2fuploads%2f2021%2f09%2fMh-Samorita-Medical-College-1.jpg&ehk=m14Q6anXs4WrQMtVXjDQdYQ8AvaKVV%2f9T6N%2btfsqftY%3d&risl=&pid=ImgRaw&r=0"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Samorita Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    89/1,Panthapath, Dhaka-1215  
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 14 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            14
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://tailwindflex.com/public/images/thumbnails/coming-soon-page/thumb_u.min.webp"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Monowara Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    54, Shidewsawri Road, Dhaka-1217
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 15 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            15
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://tailwindflex.com/public/images/thumbnails/coming-soon-page/thumb_u.min.webp"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Aloke Healthcare
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    House- 1 & 3 , Road-2, Block-B, Mirpur-10, Dhaka-1216 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  16-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            16
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="https://www.bing.com/maps?&mepi=107~Local~MiddleOfPage~Entity_Vertical_List_Card&ty=17&q=Super%20Specialized%20Hospital%2C%20BSMMU&segment=Local&ppois=23.728878021240234_90.42195129394531_Super%20Specialized%20Hospital%20-%20BSMMU_YN8017x2402371842171066776~23.752737045288086_90.38441467285156_Super%20Specialized%20Hospital%20Ltd._YN8017x190624816751286612~23.73889923095703_90.3947982788086_Bangabandhu%20Sheikh%20Mujib%20Medical%20University_YN8017x15197810128892240046~&sei=0&cp=23.728878~90.421951&child=%26ty%3D18%26q%3DSuper%2520Specialized%2520Hospital%2520-%2520BSMMU%26ss%3Dypid.YN8017x2402371842171066776%26segment%3DLocal%26ppois%3D23.728878021240234_90.42195129394531_Super%2520Specialized%2520Hospital%2520-%2520BSMMU_YN8017x2402371842171066776~%26cp%3D23.728878~90.421951%26EnableMapViewChange%3Dtrue&FORM=MPSRPL">
+                    <img class="rounded-md"
+                    src="https://th.bing.com/th/id/OLC.sEiXkGNEiBUPGw480x360?&rs=1&pid=ImgDetMain"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Super Specialized Hospital, BSMMU
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Shahbag, Dhaka 1000 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 17 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            17
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://scenenow.com/Content/Admin/Uploads/Articles/ArticlesMainPhoto/45322/94fe0fdb-0689-4e38-9712-698717cd6625.jpeg"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Elite Care Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Shaheed Tajuddin Ahmad medical college road, Joydebpur, Gazipur.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 18 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            18
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://cdn.hexahealth.com/Image/1696578288109-496210391.jpg"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Matribhumi Heart Care 
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Rupayan Taj, 1, 1/1 Naya Paltan, 
+                    Suite K - 6 (6th Floor), Culvert Road, Dhaka - 1000
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 19 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            19
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://tailwindflex.com/public/images/thumbnails/coming-soon-page/thumb_u.min.webp"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Al Mutmainnah Maa O Shishu Hospital
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    al mutma'innah maa o shishu haspatal, Dhaka 1217 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card 20 -->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            20
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://tailwindflex.com/public/images/thumbnails/coming-soon-page/thumb_u.min.webp"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Peoples Hospital 
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                    Ga 37|1 Progoti Sharawni, Main road Baridhara J Block Rd, Dhaka 1212
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!-- card  21-->
+        <div
+            class="relative bg-white border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 hover:scale-105">
+            <div class="absolute top-3 right-3 rounded-full bg-violet-600 text-gray-200  w-6 h-6 text-center">
+            21
+            </div>
+            <div class="p-2 flex justify-center">
+                <a href="#">
+                    <img class="rounded-md"
+                    src="https://tailwindflex.com/public/images/thumbnails/coming-soon-page/thumb_u.min.webp"
+                    loading="lazy">
+                </a>
+            </div>
+
+            <div class="px-4 pb-3">
+                <div>
+                    <a href="#">
+                        <h5
+                            class="text-xl font-semibold tracking-tight hover:text-violet-800 dark:hover:text-violet-300 text-gray-900 dark:text-white ">
+                            Al-Fateh Medical Sevices (Pvt) Ltd
+                        </h5>
+                    </a>
+
+                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                        A card component 
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('active');
+            document.getElementById('mainContent').classList.toggle('overlay-blur');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-icon, .profile-icon *')) {
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                if (dropdownMenu.classList.contains('active')) {
+                    dropdownMenu.classList.remove('active');
+                    document.getElementById('mainContent').classList.remove('overlay-blur');
+                }
+            }
+        }
+    </script>
+</body>
+
+
+        
+
+        <footer class="bg-white dark:bg-gray-900 relative">
+            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                <div class="md:flex md:justify-between">
+                    <div class="mb-6 md:mb-0">
+                        <a href="https://flowbite.com/" class="flex items-center">
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E Health
+                                Care</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources
+                            </h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="https://flowbite.com/" class="hover:underline">E Health Care</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us
+                            </h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                                </li>
+                                <li>
+                                    <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Terms & Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
+                            href="https://flowbite.com/" class="hover:underline">E Health Care™</a>. All Rights
+                        Reserved.
+                    </span>
+                    <div class="flex mt-4 sm:justify-center sm:mt-0">
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 8 19">
+                                <path fill-rule="evenodd"
+                                    d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Facebook page</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 21 16">
+                                <path
+                                    d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
+                            </svg>
+                            <span class="sr-only">Discord community</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 17">
+                                <path fill-rule="evenodd"
+                                    d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">Twitter page</span>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="sr-only">GitHub account</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Blood Request E Health Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+
+      @keyframes typewriter {
+          0% { width: 0; }
+          100% { width: 100%; }
+      }
+
+      @keyframes blinkTextCursor {
+          50% { border-color: transparent; }
+          100% { border-color: black; }
+      }
+
+      .fixed-slogan {
+          top: 30%;
+          left: 50%;
+          transform: translateX(-50%) translateY(250px);
+          font-size: 1.5rem;
+          text-align: center;
+          font-weight: lighter;
+          font-family: "Baloo Bhai 2";
+          white-space: nowrap;
+          overflow: hidden;
+          display: inline-block;
+          animation: typewriter 4s steps(40) 2s forwards, blinkTextCursor 0.75s step-end infinite;
+      }
+
+      .fixed-heading {
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          font-size: 3rem;
+          font-weight: bolder;
+          text-align: center;
+          font-family: "League Spartan";
+      }
+
+      .text1 {
+          font-family: "Baloo Bhai 2";
+      }
+
+      .text2 {
+          font-family: "League Spartan";
+      }
+      :root {
+        --header-height: 4rem;
+        --sidebar-width: 240px;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .animate-slide-down {
+        animation: slideDown 0.5s ease-out;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 3.5rem;
+        right: 1rem;
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        z-index: 1000;
+        display: none;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        color: #1f2937;
+        text-decoration: none;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .dropdown-menu a svg {
+        margin-right: 12px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f9fafb;
+        color: #111827;
+      }
+
+      .dropdown-menu a:last-child {
+        border-bottom: none;
+      }
+
+      .profile-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .profile-icon img {
+        border-radius: 50%;
+        border: 2px solid #e5e7eb;
+      }
+
+      .overlay-blur {
+        filter: blur(8px);
+      }
+
+      .profile-name {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #1f2937;
+      }
+
+      .search-bar {
+        position: relative;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 8px 12px;
+      }
+
+      .search-bar input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 200px;
+        transition: width 0.3s ease-in-out;
+      }
+
+      .search-bar input:focus {
+        width: 300px;
+      }
+
+      .search-bar svg {
+        width: 20px;
+        height: 20px;
+        fill: #6b7280;
+        margin-right: 8px;
+      }
+
+      .icon-button {
+        margin-right: 1rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: #f9fafb;
+        transition: background-color 0.3s ease;
+        position: relative;
+      }
+
+      .icon-button:hover {
+        background-color: #e5e7eb;
+      }
+
+      .icon-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #6b7280;
+      }
+
+      .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #f87171;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .tooltip {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .icon-button:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+      /* Profile Icon Styling */
+      .profile-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+        padding: 8px 12px;
+        border-radius: 1.5rem; /* Rounded look */
+        backdrop-filter: blur(10px); /* Apply blur effect */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow */
+        transition: background-color 0.3s ease;
+      }
+
+      .profile-icon:hover {
+        background: rgba(255, 255, 255, 0.2); /* Slightly darker on hover */
+      }
+
+      .profile-icon img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%; /* Perfectly round */
+        border: 2px solid white; /* Add white border for contrast */
+        object-fit: cover; /* Ensure the image fills the circle properly */
+      }
+
+      .profile-name {
+        font-size: 1rem;
+        font-weight: bold;
+        color: white; /* Text color to contrast with the background */
+      }
+
+      /* Dropdown Menu Styling */
+      .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 10px); /* Space below the profile icon */
+        right: 0;
+        background: rgba(255, 255, 255, 0.1); /* Light translucent background */
+        backdrop-filter: blur(10px); /* Apply blur effect */
+        border-radius: 1rem; /* Rounded corners */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+        width: 220px;
+        z-index: 1000;
+        display: none;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 12px 16px;
+        color: white; /* White text for visibility */
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+        color: #f9fafb; /* Slightly lighter white on hover */
+      }
+
+      .dropdown-menu a span.material-icons-outlined {
+        font-size: 1.5rem; /* Adjust icon size */
+        color: white;
+      }
+
+      /* Arrow Icon in Profile */
+      .profile-icon .material-icons {
+        font-size: 1.5rem;
+        color: white;
+        transition: transform 0.3s ease;
+      }
+        
+    </style>
+  </head>
+  <body
+  class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]">
+  <div class="fixed inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-70"></div>
+    
+    <!-- Navbar Section -->
+    <header
+    class="relative m-6 p-6 w-full bg-transparent text-indigo-800 z-50 shadow-lg animate-slide-down"
+  >
+    <div
+      class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between h-16"
+    >
+      <div class="text-xl font-bold text-blue-500">
+        স্বাস্থ্য <span class="text-blue-600">- সুরক্ষা</span>
+      </div>
+      <div class="flex items-center">
+        <div class="icon-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 15H6a2.032 2.032 0 00-1.595.595L3 17h5m-6-5a9 9 0 1118 0H3z"
+            />
+          </svg>
+          <div class="badge">10</div>
+          <div class="tooltip">Messenger</div>
+        </div>
+        <div class="icon-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <div class="badge">10</div>
+          <div class="tooltip">Notifications</div>
+        </div>
+        <img
+          id="avatarButton"
+          type="button"
+          data-dropdown-toggle="userDropdown"
+          data-dropdown-placement="bottom-start"
+          class="w-10 h-10 rounded-full cursor-pointer"
+          src="<?php echo $profilePicture; ?>"
+          alt="User dropdown"
+        />
+
+        <!-- Dropdown menu -->
+        <div
+          id="userDropdown"
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+        >
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div><?php echo $fullName; ?></div>
+            <div class="font-medium truncate"><?php echo $email; ?></div>
+          </div>
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="avatarButton"
+          >
+            <li>
+              <a
+                href="dashboard.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                href="settings.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Settings</a
+              >
+            </li>
+            <li>
+              <a
+                href="earnings.php"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >Earnings</a
+              >
+            </li>
+          </ul>
+          <div class="py-1">
+            <a
+              href="logout.php"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- Form Section -->
+<div class="relative max-w-4xl mx-auto p-6 bg-transparent bg-opacity-90 shadow-lg rounded-lg z-20 mt-16 mb-16" style="max-height: calc(100vh - 200px); overflow-y:auto;">
+  <div class="text-center mb-8">
+    <h4 class="text1 text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500  font-bold">
+      Register for Blood Request
+    </h4>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-8">
+    <!-- Full Name -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Full Name</label>
+      <input name="name" type="text"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+        placeholder="Enter Full Name" />
+    </div>
+
+    <!-- Number -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Number</label>
+      <input name="number" type="number"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+        placeholder="Enter Number" />
+    </div>
+
+    <!-- Blood Group Selection -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Blood Group</label>
+      <select name="blood_group"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-black outline-blue-500 transition-all">
+        <option value="A+" class="hover:bg-white hover:text-black">A+</option>
+        <option value="A-" class="hover:bg-white hover:text-black">A-</option>
+        <option value="B+" class="hover:bg-white hover:text-black">B+</option>
+        <option value="B-" class="hover:bg-white hover:text-black">B-</option>
+        <option value="O+" class="hover:bg-white hover:text-black">O+</option>
+        <option value="O-" class="hover:bg-white hover:text-black">O-</option>
+        <option value="AB+" class="hover:bg-white hover:text-black">AB+</option>
+        <option value="AB-" class="hover:bg-white hover:text-black">AB-</option>
+      </select>
+    </div>
+
+    <!-- Gender Selection -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Gender</label>
+      <select name="gender"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-black outline-blue-500 transition-all">
+        <option value="Male" class="hover:bg-white hover:text-black">Male</option>
+        <option value="Female" class="hover:bg-white hover:text-black">Female</option>
+        <option value="Other" class="hover:bg-white hover:text-black">Other</option>
+      </select>
+    </div>
+
+    <!-- Date of Birth -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Date of Birth</label>
+      <input name="date" type="date"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all" />
+    </div>
+
+    <!-- Time -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Time</label>
+      <input name="time" type="time"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all" />
+    </div>
+
+    <!-- Location -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Location</label>
+      <input name="location" type="text"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+        placeholder="Enter Location" />
+    </div>
+
+    <!-- Reason for Illness -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Reason for Illness</label>
+      <input name="illness_reason" type="text"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+        placeholder="Enter Reason for Illness" />
+    </div>
+
+    <!-- Age -->
+    <div>
+      <label class="text-white text-lg mb-2 block">Age</label>
+      <input name="age" type="number"
+        class="bg-gray-100 w-full text-black text-md px-4 py-3.5 rounded-md focus:bg-transparent focus:text-white outline-blue-500 transition-all"
+        placeholder="Enter Age" />
+    </div>
+  </div>
+
+  <!-- Checkbox & Button -->
+  <div class="flex justify-center items-center mt-8">
+    <input id="remember-me" name="remember-me" type="checkbox" class="h-6 w-6 shrink-0 rounded" />
+    <label for="remember-me" class="ml-4 block text-lg text-white">
+      I accept the
+      <a href="javascript:void(0);" class="text-blue-500 font-semibold hover:underline ml-2">Terms and Conditions</a>
+    </label>
+  </div>
+
+  <div class="mt-8 flex justify-center">
+    <div class="mt-8">
+      <button type="button"
+        class="py-4 px-8 text-lg tracking-wide font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none transition-all">Register</button>
+    </div>
+  </div>
+</div>
+
+  
+<footer class="bg-white dark:bg-gray-900 fixed bottom-0 w-full relative">
+  <div class="p-4 py-6 lg:py-8">
+    <div class="md:flex md:justify-between">
+      <div class="mb-6 md:mb-0">
+        <a href="https://flowbite.com/" class="flex items-center">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E Health Care</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+            <li class="mb-4">
+              <a href="https://flowbite.com/" class="hover:underline">E Health Care</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+            <li class="mb-4">
+              <a href="https://github.com/themesberg/flowbite" class="hover:underline">Github</a>
+            </li>
+            <li>
+              <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+          <ul class="text-gray-500 dark:text-gray-400 font-medium">
+            <li class="mb-4">
+              <a href="#" class="hover:underline">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline">Terms & Conditions</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024
+        <a href="https://flowbite.com/" class="hover:underline">E Health Care™</a>. All Rights Reserved.
+      </span>
+      <div class="flex mt-4 sm:justify-center sm:mt-0">
+        <!-- Add your social icons here -->
+      </div>
+    </div>
+  </div>
+</footer>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Scrolling Website | Codehal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap");
+
+        .text1 {
+            font-family: "Baloo Bhai 2";
+        }
+
+        .text2 {
+            font-family: "League Spartan";
+        }
+
+        .gray-container {
+            background-color: #414143;
+            padding: 50px 100px;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .carousel-container {
+            border-radius: 1rem;
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the video covers the entire container */
+            border-radius: inherit;
+        }
+
+        .carousel-item {
+            border-radius: inherit;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(128, 128, 128, 0.7);
+            transition: background-color 0.3s;
+        }
+
+        .carousel-indicators button.bg-white {
+            background-color: white;
+        }
+
+        .slider {
+        position: relative;
+        width: 100%;
+        height: 600px; /* Increased height */
+        overflow: hidden;
+        margin-top: 50px;
+    }
+
+    .item {
+        position: absolute;
+        width: 500px; /* Increased width */
+        height: 600px; /* Increased height */
+        text-align: justify;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        transition: 0.5s;
+        left: calc(50% - 250px); /* Adjusted for the new width */
+        top: 0;
+    }
+
+    #next,
+    #prev {
+        position: absolute;
+        top: 40%;
+        color: #fff;
+        background-color: transparent;
+        border: none;
+        font-size: xxx-large;
+        font-family: monospace;
+        font-weight: bold;
+        left: 400px;
+    }
+
+    #next {
+        left: unset;
+        right: 400px;
+    }
+
+    .slider h1 {
+        font-family: 'League Spartan', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: #333;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <a href="#" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">Service</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <section class="parallax">
+        <img src="Plus.jpg" id="Plus" alt="Plus">
+        <img src="Cloud1.png" id="cloud1" class="cloud">
+        <img src="Cloud1.png" id="cloud2" class="cloud">
+        <img src="Cloud1.png" id="cloud3" class="cloud">
+        <img src="Cloud1.png" id="cloud4" class="cloud">
+        <img src="Cloud1.png" id="cloud5" class="cloud">
+        <img src="City.jpg" id="Background">
+        <img src="Ambulance1.png" id="Ambulance1">
+        <img src="Ambulance2.png" id="Ambulance2">
+        <img src="Tree.png" id="Tree" style="position: absolute; top: 0; right: 0;">
+        <h2 id="text" class="text2 flex justify-center items-center">স্বাস্থ্য সুরক্ষা</h2>
+    </section>
+
+    <div class="gray-container h-full">
+        <div id="video-carousel" class="rounded-xl relative w-full  carousel-container">
+            <div class="relative w-full h-full">
+                <div class="carousel-item active duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/Video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="carousel-item hidden duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/Video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="carousel-item hidden duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline>
+                        <source src="videos/Video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+                <button type="button" class="w-3 h-3 rounded-full bg-gray-500" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                <button type="button" class="w-3 h-3 rounded-full" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+            </div>
+        </div>
+        <section>
+            <h2 class="text-white text-4xl md:text-5xl font-extrabold mt-20 text-center drop-shadow-lg">
+                <span class="inline-block text-4xl font-extrabold tracking-widest mx-2 transform hover:scale-110 transition-all duration-300">Some</span>
+                <span class="inline-block text-5xl font-extrabold tracking-tight mx-2 text-yellow-400 drop-shadow-xl transform hover:scale-110 transition-all duration-300">Glimpses</span>
+                <span class="inline-block text-4xl font-light tracking-wide mx-2 transform hover:scale-110 transition-all duration-300">of</span>
+                <span class="inline-block text-3xl font-light tracking-normal mx-2 text-white-300 hover:scale-110 transition-all duration-300">our</span>
+                <span class="inline-block text-3xl font-bold tracking-normal mx-2">website</span>
+                <span class="inline-block text-4xl font-extrabold tracking-widest mx-2 text-blue-600 drop-shadow-md transform hover:scale-110 transition-all duration-300">features</span>
+            </h2>
+        </section>
+
+        <div>
+            <div class="slider">
+                <div class="item">
+                    <img src="City.jpg" alt="">
+                    <h1></h1>
+                    <button></button>
+                </div>
+                <div class="item">
+                    <h1>Slide 2</h1>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+                <div class="item">
+                    <h1>Slide 3</h1>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+
+                <button id="next">></button>
+                <button id="prev"><</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const carouselItems = document.querySelectorAll('[data-carousel-item]');
+        const indicators = document.querySelectorAll('[data-carousel-slide-to]');
+        let currentIndex = 0;
+        const carouselInterval = 5000; // Switch every 5 seconds
+
+        function showSlide(index) {
+            carouselItems.forEach((item, i) => {
+                item.classList.toggle('hidden', i !== index);
+                item.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('bg-white', i === index);
+                indicator.classList.toggle('bg-gray-500', i !== index);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            showSlide(currentIndex);
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                showSlide(currentIndex);
+            });
+        });
+
+        showSlide(currentIndex); // Show the first slide
+        setInterval(nextSlide, carouselInterval); // Automatically switch slides
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

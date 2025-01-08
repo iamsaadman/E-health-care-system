@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E Health Care Homepage</title>
+    <title>স্বাস্থ্য - সুরক্ষা
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
@@ -31,9 +32,9 @@
         }
 
         .fixed-slogan {
-            top: 30%;
+            /* top: 30%; */
             left: 50%;
-            transform: translateX(-50%) translateY(250px);
+            transform: translateX(-50%) translateY(200px);
             font-size: 1.5rem;
             text-align: center;
             font-weight: lighter;
@@ -54,59 +55,167 @@
             font-family: "League Spartan";
         }
 
-        
+        .hover-underline {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            padding-bottom: 2px;
+        }
+
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: currentColor;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .hover-underline:hover::after {
+            width: 100%;
+        }
+        .carousel-container {
+            border-radius: 1rem;
+            box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        .carousel-item {
+            border-radius: inherit;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(128, 128, 128, 0.7);
+            transition: background-color 0.3s;
+        }
+
+        .carousel-indicators button.bg-white {
+            background-color: white;
+        }
+
+        .slider {
+        position: relative;
+        width: 100%;
+        height: 600px; /* Increased height */
+        overflow: hidden;
+        margin-top: 50px;
+    }
+
+    .item {
+        position: absolute;
+        width: 500px; /* Increased width */
+        height: 600px; /* Increased height */
+        text-align: justify;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        transition: 0.5s;
+        left: calc(50% - 250px); /* Adjusted for the new width */
+        top: 0;
+    }
+
+    #next,
+    #prev {
+        position: absolute;
+        top: 40%;
+        color: #fff;
+        background-color: transparent;
+        border: none;
+        font-size: xxx-large;
+        font-family: monospace;
+        font-weight: bold;
+        left: 400px;
+    }
+
+    #next {
+        left: unset;
+        right: 400px;
+    }
+
+    .slider h1 {
+        font-family: 'League Spartan', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: #333;
+    }
+    #transparent-overlay {
+        transition: opacity 0.7s ease-in-out;
+    }
+
+    video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-item video {
+        transition: opacity 0.7s ease-in-out;
+    }
+
+    .carousel-item.active video {
+        opacity: 1;
+    }
     </style>
 </head>
 
-<body
-    class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('a-medical-emergency-ambulance-driving-during-traffic-jam-on-city-road-rush-hour-concept-ambulance-generative-ai-photo.jpeg')]">
+<body class="relative bg-cover bg-center bg-no-repeat bg-fixed h-screen bg-[url('DoneCover.png')]">
     <div class="fixed inset-0 bg-gradient-to-b from-black via-gray-900 to-black opacity-70"></div>
     <nav class="text-white z-30 relative">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap">E Health Care</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">স্বাস্থ্য - সুরক্ষা</span>
             </a>
             <div class="hidden w-full md:block md:w-auto">
                 <ul class="flex flex-col font-medium p-4 mt-4 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
                     <li>
-                        <a href="#home"
-                            class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">
+                        <a href="http://localhost/sastho_surokha/home.php" class="hover-underline">
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="#services"
-                            class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">
+                        <a href="#services" class="hover-underline">
                             Services
                         </a>
                     </li>
                     <li>
-                        <a href="#pricing"
-                            class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">
-                            Pricing
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact"
-                            class="block py-2 px-3 rounded-lg transition-colors duration-300 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white">
+                        <a href="#contact" class="hover-underline">
                             Contact
                         </a>
                     </li>
                 </ul>
             </div>
+
             <div class="flex items-center justify-center h-full relative z-20">
-
-
                 <div class="flex space-x-4">
-                    <a href="http://127.0.0.1:3000/Login_AS.html"
-                        class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-cyan-600 text-cyan-600 text-white">
-                        <span
-                            class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-cyan-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
-                        <span
-                            class="relative text-cyan-600 transition duration-300 group-hover:text-white ease">Login</span>
-                    </a>
-                    <a href="http://127.0.0.1:3000/SignUP_as.html"
+                    <a href="http://localhost/sastho_surokha/userLogin.php"
                         class="relative inline-flex items-center justify-start inline-block px-5 py-3 overflow-hidden font-bold rounded-full group">
+                        <span
+                            class="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-white opacity-100 group-hover:-translate-x-8"></span>
+                        <span
+                            class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-gray-900">Login</span>
+                        <span class="absolute inset-0 border-2 border-white rounded-full"></span>
+                    </a>
+                    <a href="http://localhost/sastho_surokha/userRegistration.php"
+                        class="relative  items-center justify-start inline-block px-5 py-3 overflow-hidden font-bold rounded-full group">
                         <span
                             class="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-white opacity-[3%]"></span>
                         <span
@@ -119,215 +228,211 @@
                 </div>
             </div>
     </nav>
-    <!-- Welcome Text Container -->
-    <div class="container mx-auto py-96 relative h-screen"> <!-- Added padding for spacing -->
-        <div class="fixed-heading flex flex-col items-center justify-center h-full absolute inset-0">
-            <h1 class="text-transparent text-8xl bg-clip-text bg-gradient-to-r from-blue-300 via-teal-200 to-pink-300">
-                Welcome to E Health Care System
-            </h1>
+   <div class="container py-50 relative">
+    <div class="gray-container w-screen h-screen overflow-hidden">
+        <!-- Carousel Container -->
+        <div id="video-carousel" class="rounded-none relative w-full h-full">
+            <!-- Transparent Background for Initial Delay -->
+            <div id="transparent-overlay" class="absolute inset-0 bg-black opacity-75 z-20"></div>
 
-            <h2
-                class="h-screen pt-20 fixed-slogan text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-yellow-200 absolute ">
-                Making Health Care Simpler, Smarter, and More Accessible for All.
-            </h2>
-
-        </div>
-    </div>
-
-
-    <!-- Grid Section Container -->
-    <div class="relative container mx-auto py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="relative flex items-center justify-center">
-                <div
-                    class="relative w-full rounded-3xl p-px bg-gradient-to-b from-blue-300 to-pink-300 dark:from-blue-800 dark:to-purple-800 shadow-xl">
-                    <div
-                        class="relative rounded-[calc(1.5rem-1px)] p-6 sm:p-8 md:p-10 bg-white dark:bg-gray-900 transform hover:scale-105 transition-transform duration-300">
-                        <div class="flex justify-center items-center">
-                            <button
-                                class="flex justify-center items-center p-1 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-                                <span
-                                    class="text-lg sm:text-xl relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">Check
-                                    Now!</span>
-                            </button>
-                        </div>
-                        <div class="relative mt-6 sm:mt-8 flex gap-4 items-center justify-center">
-                            <img class="h-32 w-32 sm:h-40 sm:w-40 rounded-full shadow-lg"
-                                src="cute-cartoon-blood-drop-having-blood-transfusion-vector.jpg" alt="Blood drop" />
-                            <div>
-                                <h3
-                                    class="font-sans text-xl sm:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-white">
-                                    Free Blood Request</h3>
-                                <span
-                                    class="translate-y-3 text-lg sm:text-xl tracking-wide text-gray-600 dark:text-gray-400">E
-                                    Health Care</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Videos Carousel -->
+            <div class="relative w-full h-full">
+                <div class="carousel-item active duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover hidden opacity-0 transition-opacity duration-700">
+                        <source src="videos/Video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="carousel-item hidden duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover hidden opacity-0 transition-opacity duration-700">
+                        <source src="videos/Video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="carousel-item hidden duration-700 ease-in-out" data-carousel-item>
+                    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover hidden opacity-0 transition-opacity duration-700">
+                        <source src="videos/Video3.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="relative flex items-center justify-center">
-                <div
-                    class="relative w-full rounded-3xl p-px bg-gradient-to-b from-blue-300 to-pink-300 dark:from-blue-800 dark:to-purple-800 shadow-xl">
-                    <div
-                        class="relative rounded-[calc(1.5rem-1px)] p-6 sm:p-8 md:p-10 bg-white dark:bg-gray-900 transform hover:scale-105 transition-transform duration-300">
-                        <div class="flex justify-center items-center">
-                            <button
-                                class="flex justify-center items-center p-1 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-                                <span
-                                    class="text-lg sm:text-xl relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">Check
-                                    Now!</span>
-                            </button>
-                        </div>
-                        <div class="relative mt-6 sm:mt-8 flex gap-4 items-center justify-center">
-                            <img class="h-32 w-32 sm:h-40 sm:w-40 rounded-full shadow-lg"
-                                src="cute-cartoon-blood-drop-having-blood-transfusion-vector.jpg" alt="Blood drop" />
-                            <div>
-                                <h3
-                                    class="font-sans text-xl sm:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-white">
-                                    Free Blood Request</h3>
-                                <span
-                                    class="translate-y-3 text-lg sm:text-xl tracking-wide text-gray-600 dark:text-gray-400">E
-                                    Health Care</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="relative flex items-center justify-center">
-                <div
-                    class="relative w-full rounded-3xl p-px bg-gradient-to-b from-blue-300 to-pink-300 dark:from-blue-800 dark:to-purple-800 shadow-xl">
-                    <div
-                        class="relative rounded-[calc(1.5rem-1px)] p-6 sm:p-8 md:p-10 bg-white dark:bg-gray-900 transform hover:scale-105 transition-transform duration-300">
-                        <div class="flex justify-center items-center">
-                            <button
-                                class="flex justify-center items-center p-1 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
-                                <span
-                                    class="text-lg sm:text-xl relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">Check
-                                    Now!</span>
-                            </button>
-                        </div>
-                        <div class="relative mt-6 sm:mt-8 flex gap-4 items-center justify-center">
-                            <img class="h-32 w-32 sm:h-40 sm:w-40 rounded-full shadow-lg"
-                                src="cute-cartoon-blood-drop-having-blood-transfusion-vector.jpg" alt="Blood drop" />
-                            <div>
-                                <h3
-                                    class="font-sans text-xl sm:text-2xl lg:text-3xl font-medium text-gray-700 dark:text-white">
-                                    Free Blood Request</h3>
-                                <span
-                                    class="translate-y-3 text-lg sm:text-xl tracking-wide text-gray-600 dark:text-gray-400">E
-                                    Health Care</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Welcome Text and Slogan -->
+            <div class="fixed-heading flex flex-col items-center justify-center h-full absolute inset-0 z-30">
+                <h1 class="text-transparent text-8xl bg-clip-text bg-gradient-to-r from-blue-300 via-teal-200 to-pink-300 text-center px-4">
+                    Healing in a matter of time, but it is sometimes also a matter of opportunity.
+                </h1>
+                <h2 class="flex justify-center pt-20 fixed-slogan text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 text-center px-4">
+                    Making Health Care Simpler, Smarter, and More Accessible for All.
+                </h2>
             </div>
         </div>
     </div>
-
-    <div class="container mx-auto grid  md:grid-cols-3 gap-10 px-4 py-8 m-8 relative">
-        <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
-            <h3 class="text-2xl font-semibold mb-4">About Us</h3>
-            <p class="text-base">
-                At E Health Care, we aim to bridge the gap between healthcare providers and patients by utilizing
-                innovative technologies and efficient service systems.
-            </p>
-        </div>
-
-        <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
-            <h3 class="text-2xl font-semibold mb-4">Our Services</h3>
-            <p class="text-base">
-                From emergency medical support to regular health checkups, we provide a wide array of healthcare
-                solutions tailored to your needs.
-            </p>
-        </div>
-
-        <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
-            <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
-            <p class="text-base">
-                Have questions or need assistance? Reach out to us via our hotline or email for immediate support.
-            </p>
+</div>
+    <div class="bg-gray-800">
+        <!-- Grid 1 -->
+        <main class="bg-blur bg-opacity-50 relative overflow-hidden h-screen pt-48">
+            <div class="px-2 py-10 w-full flex justify-center">
+                <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg rounded-lg">
+                    <div class="lg:w-1/2">
+                        <div class="lg:scale-110 h-80 bg-cover lg:h-full rounded-b-none border lg:rounded-lg"
+                            style="background-image:url('https://celebnewsru.com/wp-content/uploads/2023/12/shutterstock_793559362.jpg')">
+                        </div>
+                    </div>
+                    <div class="py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
+                        <h2 class="text-3xl text-gray-800 font-bold">
+                            Apply for free Vaccine Request
+                            <span class="text-blue-800">সুরক্ষা</span>
+                        </h2>
+                        <p class="mt-4 text-gray-600">
+                            The "Eco-Tracker" project aims to create a web-based platform that encourages individuals to adopt
+                            sustainable lifestyle choices and actively contribute to environmental conservation. The platform
+                            will provide users with personalized tracking, education, and engagement features to empower them
+                            to make eco-friendly decisions in various aspects of their lives.
+                        </p>
+                        <div class="mt-8">
+                            <a href="http://localhost/sastho_surokha/freeVac.php"
+                                class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Request</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Grid 2 -->
+        <main class="bg-blur bg-opacity-50 relative overflow-hidden h-screen">
+            <div class="px-2 py-10 w-full flex justify-center">
+                <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg rounded-lg">
+                    <div class="lg:w-1/2">
+                        <div class="lg:scale-110 h-80 bg-cover lg:h-full rounded-b-none border lg:rounded-lg"
+                            style="background-image:url('https://celebnewsru.com/wp-content/uploads/2023/12/perelivanie-krovi.jpg')">
+                        </div>
+                    </div>
+                    <div class="py-12 px-6 lg:px-12 max-w-xl lg:max-w-5xl lg:w-1/2 rounded-t-none border lg:rounded-lg">
+                        <h2 class="text-3xl text-gray-800 font-bold">
+                            Apply for free Blood Request
+                            <span class="text-red-600">রক্তদাতা</span>
+                        </h2>
+                        <p class="mt-4 text-gray-600">
+                            The "Eco-Tracker" project aims to create a web-based platform that encourages individuals to adopt
+                            sustainable lifestyle choices and actively contribute to environmental conservation. The platform
+                            will provide users with personalized tracking, education, and engagement features to empower them
+                            to make eco-friendly decisions in various aspects of their lives.
+                        </p>
+                        <div class="mt-8">
+                            <a href="http://localhost/sastho_surokha/freeBlood.php"
+                                class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Request</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Grid and Footer Unified -->
+        <div class="bg-gray-800">
+            <div class="container mx-auto grid md:grid-cols-3 gap-10 px-4 py-8 relative">
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4">About Us</h3>
+                    <p class="text-base">
+                        At E Health Care, we aim to bridge the gap between healthcare providers and patients by utilizing
+                        innovative technologies and efficient service systems.
+                    </p>
+                </div>
+    
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4">Our Services</h3>
+                    <p class="text-base">
+                        From emergency medical support to regular health checkups, we provide a wide array of healthcare
+                        solutions tailored to your needs.
+                    </p>
+                </div>
+    
+                <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-6 text-white shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
+                    <p class="text-base">
+                        Have questions or need assistance? Reach out to us via our hotline or email for immediate support.
+                    </p>
+                </div>
+            </div>
+    
+            <footer class="bg-gray-800 relative">
+                <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                    <div class="md:flex md:justify-between">
+                        <div class="mb-6 md:mb-0">
+                            <a href="#" class="flex items-center">
+                                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">স্বাস্থ্য -
+                                    সুরক্ষা</span>
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                            <!-- Footer Links -->
+                            <div>
+                                <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Resources</h2>
+                                <ul>
+                                    <li class="mb-4">
+                                        <a href="#" class="hover:underline text-gray-500">স্বাস্থ্য - সুরক্ষা</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Follow Us</h2>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="hover:underline text-gray-500">Github</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="hover:underline text-gray-500">Discord</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Legal</h2>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="hover:underline text-gray-500">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="hover:underline text-gray-500">Terms & Conditions</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-6 border-gray-700" />
+                    <div class="sm:flex sm:items-center sm:justify-between">
+                        <span class="text-sm text-gray-400">© 2024 <a href="#" class="hover:underline">স্বাস্থ্য - সুরক্ষা</a>. All Rights Reserved.</span>
+                        <div class="flex mt-4 sm:mt-0">
+                            <a href="#" class="text-gray-400 hover:text-gray-500 mx-2">
+                                <svg class="w-4 h-4" aria-hidden="true" fill="currentColor">
+                                    <!-- Social Icon -->
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-    <footer class="bg-white dark:bg-gray-900 relative">
-        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-            <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <a href="https://flowbite.com/" class="flex items-center">
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">E Health Care</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://flowbite.com/" class="hover:underline">E Health Care</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
-                            </li>
-                            <li>
-                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                        <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="#" class="hover:underline">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:underline">Terms & Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="https://flowbite.com/" class="hover:underline">E Health Care™</a>. All Rights Reserved.
-                </span>
-                <div class="flex mt-4 sm:justify-center sm:mt-0">
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="sr-only">Facebook page</span>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                            <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                        </svg>
-                        <span class="sr-only">Discord community</span>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-                            <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="sr-only">Twitter page</span>
-                    </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
-                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="sr-only">GitHub account</span>
-                    </a>             
-                </div>
-            </div>
-        </div>
-    </footer>
+    <script>
+        // JavaScript to handle the transition
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("transparent-overlay");
+            const videos = document.querySelectorAll("#video-carousel video");
+    
+            // Wait for 3 seconds, then hide the overlay and show the videos
+            setTimeout(() => {
+                overlay.style.opacity = "0";
+                setTimeout(() => {
+                    overlay.style.display = "none"; // Remove overlay after fade-out
+                    videos.forEach((video) => {
+                        video.classList.remove("hidden");
+                        video.classList.add("opacity-10");
+                    });
+                }, 700); // Match the transition duration of 700ms
+            }, 3000); // Initial delay of 3 seconds
+        });
+    </script>
+
 </body>
 
 </html>
